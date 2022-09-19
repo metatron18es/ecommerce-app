@@ -50,11 +50,15 @@ import type { Product } from "@/types";
 import StaticPrice from "./StaticPrice.vue";
 import AddToCartButton from "./AddToCartButton.vue";
 import useProductsApi from "@/composables/productsApi";
+import { useCartStore } from "@/stores/cart";
 
 const { products, totalProducts } = await useProductsApi();
 
+const cartStore = useCartStore();
 const onAddItem = (product: Product) => {
-  console.log(product.title);
+  cartStore.addItemToCart(product);
+  console.log(cartStore.items);
+  
 };
 </script>
 
